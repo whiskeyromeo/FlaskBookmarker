@@ -1,0 +1,33 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+/*  Header/Nav */
+
+
+/*  Main  */
+
+.jumbotron {
+    background-color: #009FB4;
+    background-image: url('http://cdnlava360.saturn.netdna-cdn.com/wp-content/uploads/2012/07/12-vibrant-color-manipulation.jpg');
+    
+}
+
+.jumbotron h1, .jumbotron p {
+    color: azure;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
