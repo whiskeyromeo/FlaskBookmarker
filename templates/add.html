@@ -1,18 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add a bookmark</title>
-</head>
-<body>
-    <form action="" method="post">
-        <p>
-            Enter your bookmark here:
-            <input type="text">
-        </p>
-        <p>
-            <button type="submit">Submit</button>
-        </p>
-    </form>
-</body>
-</html>
+{% extends 'base.html' %}
+{% from "form_macros.html" import render_field %}
+
+{% block title%}
+    Add A Bookmark
+{% endblock %}
+
+
+
+
+
+{% block jumbo %}
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Add your bookmark!</h1>
+        <form id="add_bookmark" action="" method="post">
+            {{form.hidden_tag()}}        
+            {{render_field(form.url,size=50, class="form-group")}}
+            {{render_field(form.description, size=50, class="form-group")}}
+            <div class="form-group row">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+      </div>
+    </div>
+{% endblock %}
+    
+{% block content %}
+    <h6>ROOOAAAR!!!</h6>
+{% endblock %}
