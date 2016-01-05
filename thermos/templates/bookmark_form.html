@@ -5,6 +5,10 @@
     {{ title }}
 {% endblock %}
 
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/select2.css')}}">
+{% endblock %}
 
 {% block jumbo %}
     <h1>{{ title }}</h1>
@@ -12,6 +16,7 @@
         {{form.hidden_tag()}}        
         {{render_field(form.url,size=50, class="form-group")}}
         {{render_field(form.description, size=50, class="form-group")}}
+        {{render_field(form.tags, size=50, class="form-group", id="tags")}}
         <div class="form-group row">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
@@ -20,4 +25,15 @@
     
 {% block content %}
     <h6>ROOOAAAR!!!</h6>
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="{{url_for('static', filename='scripts/vendor/select2.min.js')}}"></script>
+    <script>
+        $(document).ready(function(){
+            var _tags = {{ all_tags()|map(attribute='name')|list|tojson|safe }};
+            $('#tags').select2({tags: _tags, tokenSeparators: [",", " "]});
+        });
+    </script>
 {% endblock %}

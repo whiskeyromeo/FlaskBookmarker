@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Bookmarks tagged {{ tag }}
+{% endblock %}
+
+
+{% block jumbo %}
+<h2>Bookmarks tagged {{ tag }}</h2>
+{% endblock %}
+
+
+{% block content %}
+{% if tag.bookmarks.count() > 0 %}
+    {% with bookmarks=tag.bookmarks %}
+        {% include "bookmark_list.html" %}
+    {% endwith %}
+{% else %}
+    <h3>No bookmarks tagged with {{ tag }}</h3>
+{% endif %}
+
+{% endblock %}

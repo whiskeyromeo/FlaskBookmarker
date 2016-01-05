@@ -34,7 +34,7 @@ body {
     
 }
 
-.jumbotron h1, .jumbotron h4 {
+.jumbotron h1, .jumbotron h4, .jumbotron h2, .jumbotron h3 {
     color: azure;
 }
 
@@ -53,7 +53,26 @@ label.error{
 
 /* Bookmark list */
 
+/* Select2 Modifications */
+a:hover, aside a:hover, aside a:visited:hover {
+    color: #d39447;
+}
 
+aside a{
+    color: #FFD6A3;
+}
+
+aside a:hover {
+    color: #F5BB73;
+}
+
+aside a:visited {
+    color: #D39447;
+}
+
+.main aside h3, footer h3, footer a, footer a:visited {
+    color: white;
+}
 
 
 

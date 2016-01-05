@@ -32,6 +32,8 @@ Working with the db
 ================================
 
 Database version control
+==========================
+the db variable is set in the manage.py file
     #show a list of available commands
     >> python manage.py db
     
@@ -41,8 +43,20 @@ Database version control
     #create an initial migration with the message tag 'initial'
     >> python manage.py db migrate -m "initial"
     
+    #In order to get the the latest version migrated
     #run the upgrade command(check migrations/versions/randomnumber_initial.py)
     >> python manage.py db upgrade
+    
+    #To fall back on a previous version
+    >> python manage.py db downgrade
+    
+    #To fall backto a specific version(here the version with the 'initial' tag):
+    >> python manage.py db downgrade --tag initial
+    
+    #To upgrade to a specific version(here the version with the 'tags' tag):
+    >> python manage.py db upgrade --tag tags
+    
+    
     
 =================================
 === Requirements ===

@@ -1,5 +1,5 @@
 from thermos import app, db
-from thermos.models import User, Bookmark
+from thermos.models import User, Bookmark, Tag
 from flask.ext.script import Manager, prompt_bool
 from flask.ext.migrate import Migrate, MigrateCommand
 
@@ -10,24 +10,32 @@ manager.add_command('db', MigrateCommand)
 
 @manager.command
 def initdb():
-    db.create_all()
-    print 'Initialized the database'
     
+    BillyBob = User(username="BillyBob", email="bbob@bbop.com", password="test")
+    Crash = User(username="CrashBandicoot", email="Bandicoot@rush.com", password="test")
+    db.session.add(BillyBob)
+    db.session.add(Crash)
     
-def seedBookmarks():
-    u = User.query.get(1)
-    for bm in ["test1", "test2", "test3"]:
-        db.session.add(Bookmark(user=u, url=bm))
-    v = User.query.get(2)
-    for bm in ["test4", "test5"]:
-        db.session.add(Bookmark(user=v, url=bm))
+    def add_bookmark(url, description, tags):
+        db.session.add(Bookmark(url=url, description=description, user=Crash, tags=tags))
+        
+    for name in ['python', 'flask', 'webdev', 'programming', 'training', 'news', 'orm']:
+        db.session.add(Tag(name=name))
     db.session.commit()
-    print 'Seeded Bookmarks'
+    
+
+    add_bookmark('http://jimbo.com', "Jimbo, another web development site", "webdev,orm,python")
+    add_bookmark('http://blank.com', "Blank, another web development site", "flask")
+    add_bookmark('http://nothing.com', "A site about nothing", "python")
+    add_bookmark('http://praxis.com', "A site with the name of a sweet band", "python,news")
+    add_bookmark('http://mastodon.com', "A site with the name of another sweet band", "programming")
+    add_bookmark('http://news.google.com', "Google News", "news")
+    add_bookmark('http://realpython.com', "Python training site", "programming,python")
+    add_bookmark('http://beef.com', "Its where the beef is", "news")
+    db.session.commit()
     
 @manager.command
 def seedUsers():
-    db.session.add(User(username="BillyBob", email="bbob@bbop.com", password="test"))
-    db.session.add(User(username="CrashBandicoot", email="Bandicoot@rush.com", password="test"))
     db.session.commit()
     seedBookmarks()
     print 'Seeded Users/Bookmarks'
