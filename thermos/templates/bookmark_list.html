@@ -4,10 +4,10 @@
             {% include "bookmark.html" %}
             {% if current_user == bookmark.user %}
                 <span class="editlinks pull-right col-md-4">
-                    <a href="{{url_for('delete_bookmark', bookmark_id=bookmark.id )}}">delete</a>
+                    <a href="{{url_for('bookmarks.delete_bookmark', bookmark_id=bookmark.id )}}">delete</a>
                 </span>
                 <span class="editlinks pull-right">
-                    <a href="{{url_for('edit', bookmark_id=bookmark.id )}}">edit</a>
+                    <a href="{{url_for('bookmarks.edit', bookmark_id=bookmark.id )}}">edit</a>
                 </span>
             {% endif %}
             <hr>

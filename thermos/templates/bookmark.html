@@ -11,18 +11,18 @@
     </span>
 </a>
 <div class="info">
-    {% if bookmark.tags %}
        <div class="tags">
-        {% for t in bookmark._tags %}
-            <a href="{{ url_for('tag', name=t)}}">{{ t }}</a>
-        {% endfor %}
-    {% else %}
-        <p>No Tags</p>
+        {% if bookmark.tags %}
+            {% for t in bookmark._tags %}
+                <a href="{{ url_for('bookmarks.tag', name=t)}}">{{ t }}</a>
+            {% endfor %}
+        {% else %}
+            <p>No Tags</p>
+        {% endif %}
         </div>
-    {% endif %}
-    <br>
+
     Added by
-    <a href="{{ url_for('user', username=bookmark.user.username )}}">
+    <a href="{{ url_for('bookmarks.user', username=bookmark.user.username )}}">
         {{ bookmark.user.username }}
     </a>
     {{ moment(bookmark.date).fromNow() }}    

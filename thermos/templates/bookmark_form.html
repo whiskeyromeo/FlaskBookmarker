@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% from "form_macros.html" import render_field %}
 
-{% block title%}
+{% block title %}
     {{ title }}
 {% endblock %}
 
@@ -14,9 +14,9 @@
     <h1>{{ title }}</h1>
     <form id="add_bookmark" action="" method="post">
         {{form.hidden_tag()}}        
-        {{render_field(form.url,size=50, class="form-group")}}
-        {{render_field(form.description, size=50, class="form-group")}}
-        {{render_field(form.tags, size=50, class="form-group", id="tags")}}
+        {{render_field(form.url,size=50, class="form-group col-md-6 col-sm-10")}}
+        {{render_field(form.description, size=50, class="form-group col-md-6 col-sm-10")}}
+        {{render_field(form.tags, size=50, class="form-group col-md-6 col-sm-10", id="tags")}}
         <div class="form-group row">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>

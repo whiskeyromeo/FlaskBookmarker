@@ -1,17 +1,20 @@
 Based on the pluralsight course: Introduction to the Flask Microframework
 
 Built using the flaskapp conda env.
+    
     $ activate flaskapp
 ============================
-For generating a secret_key for the session, try this from the console:
-    $ python
+
+For secret_key generation:
+    
     >> import os
-    >> os.urandom(24)  
-or something of the like...
+    >> os.urandom(24)
+
 ============================
 
 Working with the db
     #committing queries
+    
     >> from thermos import db
     >> from models import User, Bookmark
     >> db.create_all() #creates a thermos.db file
@@ -57,9 +60,46 @@ the db variable is set in the manage.py file
     >> python manage.py db upgrade --tag tags
     
     
+=================================
+Blueprints
+=================================
+    Creating(in auth/__init__):
+    from flask import Blueprint
+    auth = Blueprint('auth', __name__)
+    from . import views
     
+    Registering(in main __init__):
+    from.auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint, url_prefix='/auth')
+    
+    *views are registered using @auth.route
+    *when referencing url_for, prefix is 'auth.login' instead of 'login'
+    
+===================================
+Testing/Production
+==================================
+    
+    #set product environment via
+    $ export THERMOS_ENV=prod           <--on OSx
+    $ set THERMOS_ENV = prod            <--on Win
+    
+    Testing done via nosetests, setup in the test package located in the main folder
+    To run:
+    $ nosetests
+    
+    
+    
+============================
+Notes 
+=============================
+    
+    Check out the auth package. Creation of packages is preferred with Blueprints
+    Remember the package needs an __init__.py file.
+        
 =================================
 === Requirements ===
 
 flask-migrate
 flask-moment
+nose
+flast-testing

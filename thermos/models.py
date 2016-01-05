@@ -18,7 +18,7 @@ class Bookmark(db.Model):
     date = db.Column(db.DateTime, default=datetime.utcnow)
     description = db.Column(db.String(300))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    _tags = db.relationship('Tag', secondary=tags, backref=db.backref('bookmarks', lazy='dynamic'))
+    _tags = db.relationship('Tag', secondary=tags, lazy='joined', backref=db.backref('bookmarks', lazy='dynamic'))
     
     @staticmethod
     def newest(num):
@@ -33,7 +33,9 @@ class Bookmark(db.Model):
     def tags(self, string):
         if string:
             self._tags = [Tag.get_or_create(name) for name in string.split(',')]
-    
+        else:
+            self._tags = []
+        
     def __repr__(self):
         return "<Bookmark '{}' : '{}'>".format(self.description, self.url)
     
