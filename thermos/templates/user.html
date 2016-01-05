@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Thermos - {{user.username}}'s Bookmarks
+{% endblock %}
+
+{% block jumbo %}
+    <h1>Bookmarks for {{ user.username}}</h1>
+{% endblock %}
+
+{% block content %}
+    {% if user.bookmarks.count() > 0 %}
+        {% with bookmarks = user.bookmarks %}
+            {% include "bookmark_list.html" %}
+        {% endwith %}
+    {% else %}
+        <h3>No Bookmarks Added</h3>
+    {% endif %}
+{% endblock %}

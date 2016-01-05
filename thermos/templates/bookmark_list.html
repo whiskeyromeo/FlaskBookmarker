@@ -1,0 +1,31 @@
+<ul class="bookmarks">
+    {% for bookmark in bookmarks %}
+        <li>
+            <a href="{{ bookmark.url }}" class="header">
+                <h3 class="description">
+                    {% if bookmark.description %}
+                        {{ bookmark.description|truncate(50,True)}}
+                    {% else %}
+                        No Description
+                    {% endif %}
+                </h3>
+                <span class="url">
+                    {{ bookmark.url|truncate(50,True) }}
+                </span>
+            </a>
+            <div class="info">
+                Added by
+                <a href="{{ url_for('user', username=bookmark.user.username )}}">
+                    {{ bookmark.user.username }}
+                </a>
+                {{ moment(bookmark.date).fromNow() }}
+                {% if current_user == bookmark.user %}
+                    <span class="editlinks pull-right col-md-4">
+                        <a href="{{url_for('edit', bookmark_id=bookmark.id )}}">edit</a>
+                    </span>
+                {% endif %}
+            </div>
+        </li>
+        <hr>
+    {% endfor %}
+</ul>

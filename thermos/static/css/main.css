@@ -1,0 +1,60 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+/*  Header/Nav */
+
+
+/* Alert/Flashes */
+.flash {
+    margin-bottom:0px;
+    padding: 5px;
+    background-color: yellow;
+}
+
+
+.flash-error{
+    margin-bottom: 0px;
+    padding: 5px;
+    width: 600px;
+    color: lightcoral;
+    list-style-type: none; 
+}
+
+/*  Main  */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.jumbotron {
+    background-color: #121D55;
+    
+}
+
+.jumbotron h1, .jumbotron h4 {
+    color: azure;
+}
+
+#main-content {
+    padding: 3px 30px;
+}
+
+/* Add bookmark form*/
+.add_label {
+    color: white;
+}
+
+label.error{
+    color: red;
+}
+
+/* Bookmark list */
+
+
+
+
+
+

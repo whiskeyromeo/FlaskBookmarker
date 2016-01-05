@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% from "form_macros.html" import render_field %}
+
+{% block title%}
+    {{ title }}
+{% endblock %}
+
+
+{% block jumbo %}
+    <h1>{{ title }}</h1>
+    <form id="add_bookmark" action="" method="post">
+        {{form.hidden_tag()}}        
+        {{render_field(form.url,size=50, class="form-group")}}
+        {{render_field(form.description, size=50, class="form-group")}}
+        <div class="form-group row">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+{% endblock %}
+    
+{% block content %}
+    <h6>ROOOAAAR!!!</h6>
+{% endblock %}
