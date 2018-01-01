@@ -1,4 +1,3 @@
-Based on the pluralsight course: Introduction to the Flask Microframework
 
 Built using the flaskapp conda env.
     
